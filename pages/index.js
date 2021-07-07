@@ -12,7 +12,7 @@ export default function HomePage() {
     const enteredEmail = emailInputRef.current.value
     const enteredFeedback = feedbackInputRef.current.value
 
-
+    fetch(); //{email:'test@test.com', text:'Some feedback text'}
   }
   return (
     <div>
