@@ -4,15 +4,26 @@ import styles from '../styles/Home.module.css'
 import { useRef } from 'react'
 
 export default function HomePage() {
-  const emailInputRef = useRef()
-  const feedbackInputRef = useRef()
+  const emailInputRef = useRef();
+  const feedbackInputRef = useRef();
 
   function submitFormHandler(event) {
-    event.preventDefault()
-    const enteredEmail = emailInputRef.current.value
-    const enteredFeedback = feedbackInputRef.current.value
+    event.preventDefault();
 
-    fetch(); //{email:'test@test.com', text:'Some feedback text'}
+    const enteredEmail = emailInputRef.current.value;
+    const enteredFeedback = feedbackInputRef.current.value;
+
+    const reqBody = { email: enteredEmail, text: enteredFeedback };
+
+    fetch('/api/feedback', {
+      method: 'POST',
+      body: JSON.stringify(reqBody),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data));
   }
   return (
     <div>
